@@ -1,6 +1,6 @@
 #pragma once
-#include <string.h>
-#include "database.hpp"
+#include <iostream>
+#include <string>
 #include "gender.hpp"
 
 using namespace std;
@@ -25,7 +25,9 @@ class Student
              int indexNumber,
              string pesel,
              Gender gender);
-    Student();
+
+    void showStudent(void);
+    // Student();
     // ~Student();
 
 

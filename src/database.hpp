@@ -12,15 +12,16 @@ private:
     vector<Student> students_;
 public:
     void add( Student student );
+    // vector<Student> Database::getEntries();
     Database(/* args */);
     ~Database();
 };
 
     
-Database::Database(/* args */)
-{
-}
+// Database::Database(/* args */)
+// {
+// }
 
-Database::~Database()
-{
-}
+// Database::~Database()
+// {
+// }
