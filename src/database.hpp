@@ -1,18 +1,17 @@
 #pragma once
 #include "student.hpp"
+#include "gender.hpp"
+#include <vector>
 
-enum class Gender 
-{
-    Male,
-    Female
-};
+using namespace std;
+
 
 class Database
 {
 private:
-    /* data */
+    vector<Student> students_;
 public:
-    void add( const Student & s );
+    void add( Student student );
     Database(/* args */);
     ~Database();
 };

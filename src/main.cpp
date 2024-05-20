@@ -1,9 +1,13 @@
 #include <iostream>
+#include "database.hpp"
 
-using namespace std;
+
 
 int main()
 {
-    cout << "Hello world! \n";
+    std::cout << "Hello world! \n";
+    Database database;
+    // Student andrzej;
+    // database.add( andrzej );
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "database.hpp"
 
-Database::add( const Student & s )
+void Database::add( Student student )
 {
     
 }

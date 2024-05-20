@@ -1,18 +1,33 @@
 #pragma once
 #include <string.h>
+#include "database.hpp"
+#include "gender.hpp"
+
+using namespace std;
+
 
 class Student 
 {
-    Student( std::string name, 
-             std::string lastName,
-             std::string address,
+    private:
+    string name_; 
+    string lastName_;
+    string address_;
+    int indexNumber_;
+    string pesel_;
+    Gender gender_;
+
+
+
+    public:
+    Student( string name, 
+             string lastName,
+             string address,
              int indexNumber,
-             std::string pesel,
+             string pesel,
              Gender gender);
+    Student();
+    // ~Student();
+
+
 };
- Student: Student(/* args */)
-{
-}
- Student:: Student()
-{
-}
+
