@@ -11,17 +11,8 @@ class Database
 private:
     vector<Student> students_;
 public:
-    void add( Student student );
-    // vector<Student> Database::getEntries();
-    Database(/* args */);
-    ~Database();
+    void addItem();
+    vector<Student> getEntries(void);
+    void showCommands(void);
+    void printMenuItems(void);
 };
-
-    
-// Database::Database(/* args */)
-// {
-// }
-
-// Database::~Database()
-// {
-// }

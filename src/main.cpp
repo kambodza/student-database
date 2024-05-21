@@ -1,15 +1,15 @@
 #include <iostream>
-// #include "database.hpp"
+#include "database.hpp"
 #include "student.hpp"
 using namespace std;
 
 int main()
 {
-    cout << "Hello world! \n";
-    // Database database;
-    Student andrzej("andrzej", "duda", "krakow", 12, "46564564", Not_Specified);
-    // // database.add( andrzej );
-    andrzej.showStudent();
+    Database database;
+    database.showCommands();
+    // Student andrzej("andrzej", "duda", "krakow", 12, "46564564", Not_Specified);
+    // database.add( andrzej );
+    // andrzej.showStudent();
     return 0;
 }
 

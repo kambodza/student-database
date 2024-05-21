@@ -19,6 +19,8 @@ class Student
 
 
     public:
+    /* c-tors */
+    Student();
     Student( string name, 
              string lastName,
              string address,
@@ -27,9 +29,14 @@ class Student
              Gender gender);
 
     void showStudent(void);
-    // Student();
-    // ~Student();
-
+    void showStudent(const Student & stud);
+    string showGender();
+    void getNameFromCin(void);
+    void getLastNameFromCin(void);
+    void getAddressFromCin(void);
+    void getIndexNumberFromCin(void);
+    void getPeselFromCin(void);
+    void getGenderFromCin(void);
 
 };
 
