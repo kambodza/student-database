@@ -5,14 +5,14 @@ Napiszcie od zera program, który będzie akademicką "bazą danych".
 Używajcie STLa!
 Wymagania (16 XP):
 
-    Przechowywanie rekordów studentów o strukturze: Imię, nazwisko, adres, nr indeksu, PESEL, płeć
-    Dodawanie nowych studentów
-    Wyświetlanie całej bazy danych
-    Wyszukiwanie po nazwisku
-    Wyszukiwanie po numerze PESEL
-    Sortowanie po numerze PESEL
+[OK] Przechowywanie rekordów studentów o strukturze: Imię, nazwisko, adres, nr indeksu, PESEL, płeć
+[OK] Dodawanie nowych studentów
+[OK] Wyświetlanie całej bazy danych
+[OK] Wyszukiwanie po nazwisku
+[OK] Wyszukiwanie po numerze PESEL
+[OK] Sortowanie po numerze PESEL
     Sortowanie po nazwisku
-    Usuwanie po numerze indeksu
+[OK] Usuwanie po numerze indeksu
 
 university-db
 Opcjonalne wymagania (12 XP):

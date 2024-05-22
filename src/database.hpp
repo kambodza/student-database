@@ -13,6 +13,13 @@ private:
 public:
     void addItem();
     vector<Student> getEntries(void);
-    void showCommands(void);
+    void commandsHandler(void);
     void printMenuItems(void);
+    void printDatabaseEntries(void);
+    void searchByLastName(void);
+    void searchByPesel(void);
+    int searchByIndexNo(void);
+    void sortByPesel(void);
+    //todo sort by lastname
+    void removeByIndexNo(int idxNo);
 };

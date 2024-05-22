@@ -11,18 +11,16 @@ Student::Student()
   lastName_("NULL"),
   address_("NULL"),
   indexNumber_(-1),
-  pesel_("NULL"),
+  pesel_(-1),
   gender_(Not_Specified)
-{
-    // cout << "Bad parameters given for student, null entry \n";
-}
+{}
 
 Student::Student(
 string name, 
 string lastName,
 string address,
 int indexNumber,
-string pesel,
+int pesel,
 Gender gender)
 : name_(name),
   lastName_(lastName),
@@ -30,9 +28,7 @@ Gender gender)
   indexNumber_(indexNumber),
   pesel_(pesel),
   gender_(gender)
-{
-  // cout << "New student added its PESEL is" << pesel << "\n";
-}
+{}
 
 void Student::showStudent(void)
 {
@@ -52,7 +48,7 @@ void Student::showStudent(const Student & stud)
         << " Adress: " << stud.address_
         << " IndexNo: " << stud.indexNumber_
         << " PESEL: " << stud.pesel_
-        // << " Gender: " << showGender() todo use reference
+        << " Gender: " << showGender(stud)
         << "\n";
 }
 
@@ -71,56 +67,93 @@ string Student::showGender()
     return "Not_Specified";
   }
 }
+string Student::showGender(const Student & stud)
+{
+  if(gender_ == Male)
+  {
+    return "Male";
+  }
+  else if(gender_ == Female)
+  {
+    return "Female";
+  }
+  else
+  {
+    return "Not_Specified";
+  }
+}
 
 
-  void Student::getNameFromCin(void)
-  {
-    cout << "Prosze podac imie studenta:" << "\n";
-    cin >> ws >>  this->name_;
-  }
-  void Student::getLastNameFromCin(void)
-  {
-    cout << "Prosze podac nazwisko studenta:" << "\n";
-    cin >> ws >>  this->lastName_;
-  }
-  void Student::getAddressFromCin(void)
-  {
-    string addr;
-    cout << "Prosze podac caly adres studenta:" << "\n";
-    cin.sync();
-    getline(cin >> ws, addr, '\n');
-    this->address_ = addr;
-  }
-  void Student::getIndexNumberFromCin(void)
-  {
-    cout << "Prosze podac numer indeksu studenta:" << "\n";
-    cin >> ws >>  this->indexNumber_;
-    //todo zmienic sposob pobierania nr indeksu, sprawdzac czy to jest liczba
-  }
-  void Student::getPeselFromCin(void)
-  {
-    cout << "Prosze podac PESEL studenta:" << "\n";
-    cin >> ws >>  this->pesel_;
-  }
-  void Student::getGenderFromCin(void)
-  {
-    string genderFromUser;
-    Gender genderToSet;
-    cout << "Prosze podac plec studenta(Male, Female, Not_Specified):" << "\n";
-    cin >> ws >> genderFromUser;
+void Student::getNameFromCin(void)
+{
+  cout << "Please provide Student's name:" << "\n";
+  cin >> ws >> this->name_;
+}
+void Student::getLastNameFromCin(void)
+{
+  cout << "Please provide Student's last name:" << "\n";
+  cin >> ws >> this->lastName_;
+}
+void Student::getAddressFromCin(void)
+{
+  string addr;
+  cout << "Please provide Student's full address:" << "\n";
+  cin.sync();
+  getline(cin >> ws, addr, '\n');
+  this->address_ = addr;
+}
+void Student::getIndexNumberFromCin(void)
+{
+  cout << "Please provide Student's index no:" << "\n";
+  cin >> ws >> this->indexNumber_;
+  //todo zmienic sposob pobierania nr indeksu, sprawdzac czy to jest liczba
+}
+void Student::getPeselFromCin(void)
+{
+  cout << "Please provide Student's PESEL:" << "\n";
+  cin >> ws >> this->pesel_;
+  //todo sprawdzanie peselu ( ilosc znakow, wzor na jego obliczanie)
+}
+void Student::getGenderFromCin(void)
+{
+  string genderFromUser;
+  Gender genderToSet;
+  cout << "Please provide Student's gender(Male, Female, Not_Specified):" << "\n";
+  cin >> ws >> genderFromUser;
 
-    if(genderFromUser == "Male")
-    {
-      genderToSet = Male;
-    }
-    else if(genderFromUser == "Female")
-    {
-      genderToSet = Female;
-    }
-    else
-    {
-      genderToSet = Not_Specified;
-    }
-
-    this->gender_ = genderToSet;
+  if(genderFromUser == "Male")
+  {
+    genderToSet = Male;
   }
+  else if(genderFromUser == "Female")
+  {
+    genderToSet = Female;
+  }
+  else
+  {
+    genderToSet = Not_Specified;
+  }
+
+  this->gender_ = genderToSet;
+}
+
+string Student::getLastName(void)
+{
+    return lastName_;
+}
+
+int Student::getPesel(void)
+{
+    return pesel_;
+}
+
+int Student::getIndexNo(void)
+{
+  return indexNumber_;
+}
+
+bool Student::operator < (const Student& stud)
+{
+    return (pesel_ < stud.pesel_);
+}
+

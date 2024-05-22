@@ -13,7 +13,7 @@ class Student
     string lastName_;
     string address_;
     int indexNumber_;
-    string pesel_;
+    int pesel_;
     Gender gender_;
 
 
@@ -25,18 +25,21 @@ class Student
              string lastName,
              string address,
              int indexNumber,
-             string pesel,
+             int pesel,
              Gender gender);
 
     void showStudent(void);
     void showStudent(const Student & stud);
     string showGender();
+    string showGender(const Student & stud);
     void getNameFromCin(void);
     void getLastNameFromCin(void);
     void getAddressFromCin(void);
     void getIndexNumberFromCin(void);
     void getPeselFromCin(void);
     void getGenderFromCin(void);
-
+    string getLastName(void);
+    int getPesel(void);
+    int getIndexNo(void);
+    bool operator < (const Student& stud);
 };
-
