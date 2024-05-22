@@ -41,5 +41,5 @@ class Student
     string getLastName(void);
     int getPesel(void);
     int getIndexNo(void);
-    bool operator < (const Student& stud);
+
 };

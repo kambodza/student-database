@@ -11,7 +11,7 @@ Wymagania (16 XP):
 [OK] Wyszukiwanie po nazwisku
 [OK] Wyszukiwanie po numerze PESEL
 [OK] Sortowanie po numerze PESEL
-    Sortowanie po nazwisku
+[OK] Sortowanie po nazwisku
 [OK] Usuwanie po numerze indeksu
 
 university-db

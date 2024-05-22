@@ -20,6 +20,6 @@ public:
     void searchByPesel(void);
     int searchByIndexNo(void);
     void sortByPesel(void);
-    //todo sort by lastname
+    void sortByLastname(void);
     void removeByIndexNo(int idxNo);
 };

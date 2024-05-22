@@ -152,8 +152,4 @@ int Student::getIndexNo(void)
   return indexNumber_;
 }
 
-bool Student::operator < (const Student& stud)
-{
-    return (pesel_ < stud.pesel_);
-}
 

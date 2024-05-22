@@ -37,6 +37,7 @@ void Database::commandsHandler(void)
             break;
 
         case 2:
+            /* remove student */
             pos = searchByIndexNo();
             if( pos != -1)
             {
@@ -66,7 +67,7 @@ void Database::commandsHandler(void)
             break;
 
         case 7:
-            /* TODO sort by lastname */
+            sortByLastname();
             break;
         case 8:
 
@@ -235,13 +236,32 @@ void Database::sortByPesel(void)
     else
     {
         cout << "Sorting by PESEL..\n";
-        sort(students_.begin(), students_.end());
+        sort(students_.begin(), students_.end(), [](Student a, Student b)
+        {
+            return a.getPesel() < b.getPesel();
+        });
         cout << "Database is sorted: \n";
         printDatabaseEntries();
     }
 }
 
-//todo sort by lastname
+void Database::sortByLastname(void)
+{
+    if(students_.empty())
+    {
+        cout << "Database is empty. Unable to sort students \n";
+    }
+    else
+    {
+        cout << "Sorting by lastname..\n";
+        sort(students_.begin(), students_.end(), [](Student a, Student b)
+        {
+            return a.getLastName() < b.getLastName();
+        });
+        cout << "Database is sorted: \n";
+        printDatabaseEntries();
+    }
+}
 
 void Database::removeByIndexNo(int idxNo)
 {
