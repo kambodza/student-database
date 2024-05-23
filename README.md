@@ -22,4 +22,8 @@ university-db
 Opcjonalne wymagania (12 XP):
 
 1.    Walidacja czy numer PESEL jest poprawny Wiki - poprawność PESEL (trudne)
+<<<<<<< HEAD
 2.    Wczytywanie z pliku i zapisywanie całej bazy w pliku (trudne)
+=======
+2.    Wczytywanie z pliku i zapisywanie całej bazy w pliku (trudne)
+>>>>>>> d9fc132836e4da4eb47d5bfd07e1e14bb7125e73
