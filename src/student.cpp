@@ -11,7 +11,7 @@ Student::Student()
   lastName_("NULL"),
   address_("NULL"),
   indexNumber_(-1),
-  pesel_(-1),
+  pesel_("NULL"),
   gender_(Not_Specified)
 {}
 
@@ -20,7 +20,7 @@ string name,
 string lastName,
 string address,
 int indexNumber,
-int pesel,
+string pesel,
 Gender gender)
 : name_(name),
   lastName_(lastName),
@@ -110,9 +110,50 @@ void Student::getIndexNumberFromCin(void)
 }
 void Student::getPeselFromCin(void)
 {
-  cout << "Please provide Student's PESEL:" << "\n";
-  cin >> ws >> this->pesel_;
-  //todo sprawdzanie peselu ( ilosc znakow, wzor na jego obliczanie)
+  bool peselOkFlag = false;
+  string peselToCheck;
+  static const unsigned coefArray[10] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+  unsigned sum = 0;
+  int controlNumber = 0;
+
+  while(peselOkFlag == false)
+  {
+    cout << "Please provide Student's PESEL:" << "\n";
+    cin >> ws >> peselToCheck;
+
+    sum = 0;
+    controlNumber = 0;
+    //todo sprawdzanie peselu ( ilosc znakow, wzor na jego obliczanie)
+    if(peselToCheck.size() == 11)
+    {
+      for(unsigned i = 0; i < 10; i++)
+      {
+        sum += ( ( peselToCheck.at(i) - '0' ) * coefArray[i] ) ;
+      }
+
+      controlNumber = 10 - (sum % 10);
+      if(controlNumber < 0) 
+      {
+        controlNumber = 0;
+      }
+
+      if( (peselToCheck.at(10) -'0') == controlNumber)
+      {
+        cout << "Student's PESEL is valid:" << "\n";
+        peselOkFlag = true;
+        this->pesel_ = peselToCheck;
+      }
+      else
+      {
+        cout << "Student's PESEL NOT valid, control number is wrong:" << "\n";
+      }
+
+    }
+    else
+    {
+      cout << "Student's PESEL wrong size it should be 11 digit" << "\n";
+    }
+  }
 }
 void Student::getGenderFromCin(void)
 {
@@ -142,7 +183,7 @@ string Student::getLastName(void)
     return lastName_;
 }
 
-int Student::getPesel(void)
+string Student::getPesel(void)
 {
     return pesel_;
 }

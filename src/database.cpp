@@ -11,6 +11,7 @@ void Database::addItem()
     studentToAdd.getPeselFromCin();
     studentToAdd.getGenderFromCin();
     this->students_.push_back(studentToAdd);
+    cout << "Student is added!\n";
 }
 
 vector<Student> Database::getEntries(void)
@@ -156,7 +157,7 @@ void Database::searchByLastName(void)
 
 void Database::searchByPesel(void)
 {
-    int peselToSearch;
+    string peselToSearch;
     bool foundFlag = false;
 
     if(students_.empty())

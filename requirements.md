@@ -12,10 +12,10 @@ Wymagania (16 XP):
 [OK] Wyszukiwanie po numerze PESEL
 [OK] Sortowanie po numerze PESEL
 [OK] Sortowanie po nazwisku
-[OK] Usuwanie po numerze indeksu
+ Usuwanie po numerze indeksu
 
 university-db
 Opcjonalne wymagania (12 XP):
 
-    Walidacja czy numer PESEL jest poprawny Wiki - poprawność PESEL (trudne)
+[OK] Walidacja czy numer PESEL jest poprawny Wiki - poprawność PESEL (trudne)
     Wczytywanie z pliku i zapisywanie całej bazy w pliku (trudne)
