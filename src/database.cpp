@@ -4,12 +4,12 @@
 void Database::addItem()
 {
     auto studentToAdd = Student();
-    studentToAdd.getNameFromCin();
-    studentToAdd.getLastNameFromCin();
-    studentToAdd.getAddressFromCin();
-    studentToAdd.getIndexNumberFromCin();
-    studentToAdd.getPeselFromCin();
-    studentToAdd.getGenderFromCin();
+    studentToAdd.takeNameFromCin();
+    studentToAdd.takeLastNameFromCin();
+    studentToAdd.takeAddressFromCin();
+    studentToAdd.takeIndexNumberFromCin();
+    studentToAdd.takePeselFromCin();
+    studentToAdd.takeGenderFromCin();
     students_.push_back(studentToAdd);
     std::cout << "Student is added!\n";
 }
@@ -23,8 +23,6 @@ void Database::commandsHandler()
 {
     unsigned commandNo = 0;
     bool loopGoOn = true;
-    unsigned studNo = 1;
-    int pos = -1;
 
     while (loopGoOn)
     {
@@ -39,16 +37,7 @@ void Database::commandsHandler()
 
         case 2:
             /* remove student */
-            pos = searchByIndexNo();
-            if( pos != -1)
-            {
-                removeByIndexNo(pos);
-                
-            }
-            else
-            {
-                std::cout << "Unable to delete student!\n";
-            }
+            removeByIndexNo(searchByIndexNo());
             break;
 
         case 3:
@@ -86,7 +75,6 @@ void Database::commandsHandler()
             break;
         }
     }
-    
 }
 
 void Database::printMenuItems()
@@ -255,6 +243,11 @@ void Database::sortByLastname()
 
 void Database::removeByIndexNo(int idxNo)
 {
-    students_.erase(students_.begin() + idxNo);
-    std::cout << "Student is erased successfully!\n";
+    if(idxNo != -1)
+    {
+        students_.erase(students_.begin() + idxNo);
+        std::cout << "Student is erased successfully!\n";
+    }
+    else
+        std::cout << "Unable to delete student!\n";
 }

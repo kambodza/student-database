@@ -39,17 +39,6 @@ void Student::showStudent() const
         << "\n";
 }
 
-void Student::showStudent(const Student & stud) const 
-{
-  std::cout << "Name: " << stud.name_ 
-        <<" LastName: " << stud.lastName_ 
-        << " Adress: " << stud.address_
-        << " IndexNo: " << stud.indexNumber_
-        << " PESEL: " << stud.pesel_
-        << " Gender: " << showGender(stud)
-        << "\n";
-}
-
 std::string Student::showGender() const
 {
   if(gender_ == Gender::Male)
@@ -58,30 +47,21 @@ std::string Student::showGender() const
     return "Female";
  
   return "Not_Specified";
-
-}
-std::string Student::showGender(const Student & stud) const
-{
-  if(gender_ == Gender::Male)
-    return "Male";
-  if(gender_ == Gender::Female)
-    return "Female";
- 
-  return "Not_Specified";
 }
 
-
-void Student::getNameFromCin()
+void Student::takeNameFromCin()
 {
   std::cout << "Please provide Student's name:" << "\n";
   std::cin >> std::ws >> name_;
 }
-void Student::getLastNameFromCin()
+
+void Student::takeLastNameFromCin()
 {
   std::cout << "Please provide Student's last name:" << "\n";
   std::cin >> std::ws >> lastName_;
 }
-void Student::getAddressFromCin()
+
+void Student::takeAddressFromCin()
 {
   std::string addr;
   std::cout << "Please provide Student's full address:" << "\n";
@@ -89,26 +69,27 @@ void Student::getAddressFromCin()
   std::getline(std::cin >> std::ws, addr, '\n');
   address_ = addr;
 }
-void Student::getIndexNumberFromCin()
+
+void Student::takeIndexNumberFromCin()
 {
   std::cout << "Please provide Student's index no:" << "\n";
   std::cin >> std::ws >> indexNumber_;
 }
-void Student::getPeselFromCin()
+
+void Student::takePeselFromCin()
 {
   bool peselOkFlag = false;
   std::string peselToCheck;
   static const unsigned coefArray[10] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
-  unsigned sum{};
-  int controlNumber{};
 
   while(!peselOkFlag)
   {
     std::cout << "Please provide Student's PESEL:" << "\n";
     std::cin >> std::ws >> peselToCheck;
 
-    sum = 0;
-    controlNumber = 0;
+    unsigned sum{};
+    int controlNumber{};
+
     if(peselToCheck.size() != 11)
     {
       std::cout << "Student's PESEL wrong size it should be 11 digit" << "\n";
@@ -133,7 +114,8 @@ void Student::getPeselFromCin()
     pesel_ = peselToCheck;
   }
 }
-void Student::getGenderFromCin()
+
+void Student::takeGenderFromCin()
 {
   std::string genderFromUser;
   Gender genderToSet;
@@ -170,5 +152,3 @@ int Student::getIndexNo() const
 {
   return indexNumber_;
 }
-
-

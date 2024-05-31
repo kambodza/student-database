@@ -26,15 +26,13 @@ class Student
              Gender gender);
 
     void showStudent() const;
-    void showStudent(const Student & stud) const;
     std::string showGender() const;
-    std::string showGender(const Student & stud) const;
-    void getNameFromCin();
-    void getLastNameFromCin();
-    void getAddressFromCin();
-    void getIndexNumberFromCin();
-    void getPeselFromCin();
-    void getGenderFromCin();
+    void takeNameFromCin();
+    void takeLastNameFromCin();
+    void takeAddressFromCin();
+    void takeIndexNumberFromCin();
+    void takePeselFromCin();
+    void takeGenderFromCin();
     std::string getLastName() const;
     std::string getPesel() const;
     int getIndexNo() const;
