@@ -1,7 +1,7 @@
 #pragma once
-enum Gender 
+enum class Gender : int 
 {
+    Not_Specified,
     Male,
-    Female,
-    Not_Specified
+    Female
 };

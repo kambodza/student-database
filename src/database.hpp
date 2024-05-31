@@ -3,23 +3,21 @@
 #include "gender.hpp"
 #include <vector>
 
-using namespace std;
-
 
 class Database
 {
 private:
-    vector<Student> students_;
+    std::vector<Student> students_;
 public:
     void addItem();
-    vector<Student> getEntries(void);
-    void commandsHandler(void);
-    void printMenuItems(void);
-    void printDatabaseEntries(void);
-    void searchByLastName(void);
-    void searchByPesel(void);
-    int searchByIndexNo(void);
-    void sortByPesel(void);
-    void sortByLastname(void);
+    std::vector<Student> getEntries();
+    void commandsHandler();
+    void printMenuItems();
+    void printDatabaseEntries();
+    void searchByLastName();
+    void searchByPesel();
+    int searchByIndexNo();
+    void sortByPesel();
+    void sortByLastname();
     void removeByIndexNo(int idxNo);
 };

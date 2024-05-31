@@ -10,16 +10,16 @@ void Database::addItem()
     studentToAdd.getIndexNumberFromCin();
     studentToAdd.getPeselFromCin();
     studentToAdd.getGenderFromCin();
-    this->students_.push_back(studentToAdd);
-    cout << "Student is added!\n";
+    students_.push_back(studentToAdd);
+    std::cout << "Student is added!\n";
 }
 
-vector<Student> Database::getEntries(void)
+std::vector<Student> Database::getEntries()
 {
     return students_;
 }
 
-void Database::commandsHandler(void)
+void Database::commandsHandler()
 {
     unsigned commandNo = 0;
     bool loopGoOn = true;
@@ -28,13 +28,13 @@ void Database::commandsHandler(void)
 
     while (loopGoOn)
     {
-        this->printMenuItems();
-        cin >> ws >> commandNo;
+        printMenuItems();
+        std::cin >> std::ws >> commandNo;
         switch (commandNo)
         {
         case 1:
             /* add student */
-            this->addItem();
+            addItem();
             break;
 
         case 2:
@@ -43,11 +43,11 @@ void Database::commandsHandler(void)
             if( pos != -1)
             {
                 removeByIndexNo(pos);
-                cout << "Student is erased successfully!\n";
+                
             }
             else
             {
-                cout << "Unable to delete student!\n";
+                std::cout << "Unable to delete student!\n";
             }
             break;
 
@@ -76,190 +76,179 @@ void Database::commandsHandler(void)
 
         case 10:
             loopGoOn = false;
-            cout << "Closing program. See you soon! \n";
+            std::cout << "Closing program. See you soon! \n";
             break;
         
         default:
-            cout << "This menu item is not supported, write ok + enter to continue \n";
-            string noUseString;
-            cin >> ws >> noUseString;
+            std::cout << "This menu item is not supported, write ok + enter to continue \n";
+            std::string noUseString;
+            std::cin >> std::ws >> noUseString;
             break;
         }
     }
     
 }
 
-void Database::printMenuItems(void)
+void Database::printMenuItems()
 {
-    cout << "\n" << "\n" << "\n" << "\n";
-    cout << "////STUDENT-DATABASE menu choose option:\\\\\\\\" << "\n";
-    cout << "1 - Add Student" << "\n";
-    cout << "2 - Remove Student" << "\n";
-    cout << "3 - Show all Students" << "\n";
-    cout << "4 - Search Student by lastname" << "\n";
-    cout << "5 - Search Student by PESEL" << "\n";
-    cout << "6 - Sort Students by PESEL" << "\n";
-    cout << "7 - Sort Students by lastname" << "\n";
-    cout << "10 - Close program" << "\n";
+    std::cout << "\n" << "\n" << "\n" << "\n";
+    std::cout << "////STUDENT-DATABASE menu choose option:\\\\\\\\" << "\n";
+    std::cout << "1 - Add Student" << "\n";
+    std::cout << "2 - Remove Student" << "\n";
+    std::cout << "3 - Show all Students" << "\n";
+    std::cout << "4 - Search Student by lastname" << "\n";
+    std::cout << "5 - Search Student by PESEL" << "\n";
+    std::cout << "6 - Sort Students by PESEL" << "\n";
+    std::cout << "7 - Sort Students by lastname" << "\n";
+    std::cout << "10 - Close program" << "\n";
 }
 
-void Database::printDatabaseEntries(void)
+void Database::printDatabaseEntries()
 {
     unsigned studNo = 1;
-    cout << "\n";
+    std::cout << "\n";
     if(students_.empty())
     {
-        cout << "Database is empty. Unable to show students \n";
+        std::cout << "Database is empty. Unable to show students \n";
     }
     else
     {
-        for(Student n : students_)
+        for(const Student& n : students_)
         {
-            cout << studNo << ". ";
+            std::cout << studNo << ". ";
             n.showStudent();
-            cout << "\n";
+            std::cout << "\n";
             studNo++;
         }
     }
 }
 
-void Database::searchByLastName(void)
+void Database::searchByLastName()
 {
-    string nameToSearch;
+    std::string nameToSearch;
     bool foundFlag = false;
 
     if(students_.empty())
     {
-        cout << "Database is empty. Unable to search students \n";
+        std::cout << "Database is empty. Unable to search students \n";
     }
     else
     {
-        cout << "Enter last name to search:\n";
-        cin >> ws >> nameToSearch;
+        std::cout << "Enter last name to search:\n";
+        std::cin >> std::ws >> nameToSearch;
 
-        for(Student n : students_)
+        for(const Student& n : students_)
         {
             if(n.getLastName() == nameToSearch)
             {
-                cout << "Entry is found!\n";
+                std::cout << "Entry is found!\n";
                 n.showStudent();
-                cout << "\n";
+                std::cout << "\n";
                 foundFlag = true;
             }
         }
 
         if( foundFlag == false )
         {
-            cout << "Student named" << nameToSearch << "is not found!\n";
+            std::cout << "Student named" << nameToSearch << "is not found!\n";
         }
     }
 }
 
-void Database::searchByPesel(void)
+void Database::searchByPesel()
 {
-    string peselToSearch;
+    std::string peselToSearch;
     bool foundFlag = false;
 
     if(students_.empty())
     {
-        cout << "Database is empty. Unable to search students \n";
+        std::cout << "Database is empty. Unable to search students \n";
     }
     else
     {
-        cout << "Enter PESEL to search:\n";
-        cin >> ws >> peselToSearch;
+        std::cout << "Enter PESEL to search:\n";
+        std::cin >> std::ws >> peselToSearch;
 
-        for(Student n : students_)
+        for(const Student& n : students_)
         {
             if(n.getPesel() == peselToSearch)
             {
-                cout << "Entry is found!\n";
+                std::cout << "Entry is found!\n";
                 n.showStudent();
-                cout << "\n";
+                std::cout << "\n";
                 foundFlag = true;
             }
         }
 
         if( foundFlag == false )
         {
-            cout << "Student with PESEL " << peselToSearch << " is not found!\n";
+            std::cout << "Student with PESEL " << peselToSearch << " is not found!\n";
         }
     }
 
 }
-int Database::searchByIndexNo(void)
+int Database::searchByIndexNo()
 {
     int idxToSearch;
     bool foundFlag = false;
 
     int position = -1;
 
-    if(students_.empty())
+    if(!students_.empty())
     {
-        cout << "Database is empty. Unable to search students \n";
+        std::cout << "Enter Index number to search:\n";
+        std::cin >> std::ws >> idxToSearch;
+
+        auto it = std::find_if(std::begin(students_), std::end(students_), 
+                            [idxToSearch](const Student& student) { return student.getIndexNo() == idxToSearch; });
+
+        if (it == std::end(students_)) 
+            std::cout << "Student with indexNumber " << idxToSearch << " is not found!\n";
+        else 
+        {
+            it->showStudent(); 
+            position = std::distance( students_.begin(), it );
+        }
+        
     }
     else
-    {
-        cout << "Enter Index number to search:\n";
-        cin >> ws >> idxToSearch;
-
-        position = 0;
-
-        for(Student n : students_)
-        {
-            if(n.getIndexNo() == idxToSearch)
-            {
-                cout << "Entry is found!\n";
-                n.showStudent();
-                cout << "\n";
-                foundFlag = true;
-                break;
-            }
-            position++;
-        }
-
-        if( foundFlag == false )
-        {
-            cout << "Student with indexNumber " << idxToSearch << " is not found!\n";
-            position = -1;
-        }
-    }
+        std::cout << "Database is empty. Unable to search students \n";
 
     return position;
 }
 
-void Database::sortByPesel(void)
+void Database::sortByPesel()
 {
     if(students_.empty())
     {
-        cout << "Database is empty. Unable to sort students \n";
+        std::cout << "Database is empty. Unable to sort students \n";
     }
     else
     {
-        cout << "Sorting by PESEL..\n";
-        sort(students_.begin(), students_.end(), [](Student a, Student b)
+        std::cout << "Sorting by PESEL..\n";
+        sort(students_.begin(), students_.end(), [](const Student& a, const Student& b)
         {
             return a.getPesel() < b.getPesel();
         });
-        cout << "Database is sorted: \n";
+        std::cout << "Database is sorted: \n";
         printDatabaseEntries();
     }
 }
 
-void Database::sortByLastname(void)
+void Database::sortByLastname()
 {
     if(students_.empty())
     {
-        cout << "Database is empty. Unable to sort students \n";
+        std::cout << "Database is empty. Unable to sort students \n";
     }
     else
     {
-        cout << "Sorting by lastname..\n";
-        sort(students_.begin(), students_.end(), [](Student a, Student b)
+        std::cout << "Sorting by lastname..\n";
+        sort(students_.begin(), students_.end(), [](const Student& a, const Student& b)
         {
             return a.getLastName() < b.getLastName();
         });
-        cout << "Database is sorted: \n";
+        std::cout << "Database is sorted: \n";
         printDatabaseEntries();
     }
 }
@@ -267,4 +256,5 @@ void Database::sortByLastname(void)
 void Database::removeByIndexNo(int idxNo)
 {
     students_.erase(students_.begin() + idxNo);
+    std::cout << "Student is erased successfully!\n";
 }

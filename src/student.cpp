@@ -4,23 +4,21 @@
 #include <string>
 #include "gender.hpp"
 
-using namespace std;
-
 Student::Student()
 : name_("NULL"),
   lastName_("NULL"),
   address_("NULL"),
   indexNumber_(-1),
   pesel_("NULL"),
-  gender_(Not_Specified)
+  gender_(Gender::Not_Specified)
 {}
 
 Student::Student(
-string name, 
-string lastName,
-string address,
+const std::string &name, 
+const std::string &lastName,
+const std::string &address,
 int indexNumber,
-string pesel,
+const std::string &pesel,
 Gender gender)
 : name_(name),
   lastName_(lastName),
@@ -30,9 +28,9 @@ Gender gender)
   gender_(gender)
 {}
 
-void Student::showStudent(void)
+void Student::showStudent() const
 {
-  cout << "Name: " << name_ 
+  std::cout << "Name: " << name_ 
         <<" LastName: " << lastName_ 
         << " Adress: " << address_
         << " IndexNo: " << indexNumber_
@@ -41,9 +39,9 @@ void Student::showStudent(void)
         << "\n";
 }
 
-void Student::showStudent(const Student & stud)
+void Student::showStudent(const Student & stud) const 
 {
-  cout << "Name: " << stud.name_ 
+  std::cout << "Name: " << stud.name_ 
         <<" LastName: " << stud.lastName_ 
         << " Adress: " << stud.address_
         << " IndexNo: " << stud.indexNumber_
@@ -52,143 +50,123 @@ void Student::showStudent(const Student & stud)
         << "\n";
 }
 
-string Student::showGender()
+std::string Student::showGender() const
 {
-  if(gender_ == Male)
-  {
+  if(gender_ == Gender::Male)
     return "Male";
-  }
-  else if(gender_ == Female)
-  {
+  if(gender_ == Gender::Female)
     return "Female";
-  }
-  else
-  {
-    return "Not_Specified";
-  }
+ 
+  return "Not_Specified";
+
 }
-string Student::showGender(const Student & stud)
+std::string Student::showGender(const Student & stud) const
 {
-  if(gender_ == Male)
-  {
+  if(gender_ == Gender::Male)
     return "Male";
-  }
-  else if(gender_ == Female)
-  {
+  if(gender_ == Gender::Female)
     return "Female";
-  }
-  else
-  {
-    return "Not_Specified";
-  }
+ 
+  return "Not_Specified";
 }
 
 
-void Student::getNameFromCin(void)
+void Student::getNameFromCin()
 {
-  cout << "Please provide Student's name:" << "\n";
-  cin >> ws >> this->name_;
+  std::cout << "Please provide Student's name:" << "\n";
+  std::cin >> std::ws >> name_;
 }
-void Student::getLastNameFromCin(void)
+void Student::getLastNameFromCin()
 {
-  cout << "Please provide Student's last name:" << "\n";
-  cin >> ws >> this->lastName_;
+  std::cout << "Please provide Student's last name:" << "\n";
+  std::cin >> std::ws >> lastName_;
 }
-void Student::getAddressFromCin(void)
+void Student::getAddressFromCin()
 {
-  string addr;
-  cout << "Please provide Student's full address:" << "\n";
-  cin.sync();
-  getline(cin >> ws, addr, '\n');
-  this->address_ = addr;
+  std::string addr;
+  std::cout << "Please provide Student's full address:" << "\n";
+  std::cin.sync();
+  std::getline(std::cin >> std::ws, addr, '\n');
+  address_ = addr;
 }
-void Student::getIndexNumberFromCin(void)
+void Student::getIndexNumberFromCin()
 {
-  cout << "Please provide Student's index no:" << "\n";
-  cin >> ws >> this->indexNumber_;
-  //todo zmienic sposob pobierania nr indeksu, sprawdzac czy to jest liczba
+  std::cout << "Please provide Student's index no:" << "\n";
+  std::cin >> std::ws >> indexNumber_;
 }
-void Student::getPeselFromCin(void)
+void Student::getPeselFromCin()
 {
   bool peselOkFlag = false;
-  string peselToCheck;
+  std::string peselToCheck;
   static const unsigned coefArray[10] = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
-  unsigned sum = 0;
-  int controlNumber = 0;
+  unsigned sum{};
+  int controlNumber{};
 
-  while(peselOkFlag == false)
+  while(!peselOkFlag)
   {
-    cout << "Please provide Student's PESEL:" << "\n";
-    cin >> ws >> peselToCheck;
+    std::cout << "Please provide Student's PESEL:" << "\n";
+    std::cin >> std::ws >> peselToCheck;
 
     sum = 0;
     controlNumber = 0;
-    //todo sprawdzanie peselu ( ilosc znakow, wzor na jego obliczanie)
-    if(peselToCheck.size() == 11)
+    if(peselToCheck.size() != 11)
     {
-      for(unsigned i = 0; i < 10; i++)
-      {
-        sum += ( ( peselToCheck.at(i) - '0' ) * coefArray[i] ) ;
-      }
-
-      controlNumber = 10 - (sum % 10);
-      if(controlNumber < 0) 
-      {
-        controlNumber = 0;
-      }
-
-      if( (peselToCheck.at(10) -'0') == controlNumber)
-      {
-        cout << "Student's PESEL is valid:" << "\n";
-        peselOkFlag = true;
-        this->pesel_ = peselToCheck;
-      }
-      else
-      {
-        cout << "Student's PESEL NOT valid, control number is wrong:" << "\n";
-      }
-
+      std::cout << "Student's PESEL wrong size it should be 11 digit" << "\n";
+      continue;
     }
-    else
+
+    for(unsigned i = 0; i < 10; i++)
     {
-      cout << "Student's PESEL wrong size it should be 11 digit" << "\n";
+      sum += ( ( peselToCheck[i] - '0' ) * coefArray[i] ) ;
     }
+
+    controlNumber = (10 - (sum % 10)) % 10;
+
+    if( (peselToCheck[10] -'0') != controlNumber)
+    {
+      std::cout << "Student's PESEL NOT valid, control number is wrong:" << "\n";
+      continue;
+    }
+
+    std::cout << "Student's PESEL is valid." << "\n";
+    peselOkFlag = true;
+    pesel_ = peselToCheck;
   }
 }
-void Student::getGenderFromCin(void)
+void Student::getGenderFromCin()
 {
-  string genderFromUser;
+  std::string genderFromUser;
   Gender genderToSet;
-  cout << "Please provide Student's gender(Male, Female, Not_Specified):" << "\n";
-  cin >> ws >> genderFromUser;
+  std::cout << "Please provide Student's gender(Male, Female, Not_Specified):" << "\n";
+  std::cin >> std::ws >> genderFromUser;
 
   if(genderFromUser == "Male")
   {
-    genderToSet = Male;
+    genderToSet = Gender::Male;
   }
   else if(genderFromUser == "Female")
   {
-    genderToSet = Female;
+    genderToSet = Gender::Female;
   }
   else
   {
-    genderToSet = Not_Specified;
+    genderToSet = Gender::Not_Specified;
   }
 
-  this->gender_ = genderToSet;
+  gender_ = genderToSet;
 }
 
-string Student::getLastName(void)
+std::string Student::getLastName() const
 {
-    return lastName_;
+  return lastName_;
 }
 
-string Student::getPesel(void)
+std::string Student::getPesel() const
 {
-    return pesel_;
+  return pesel_;
 }
 
-int Student::getIndexNo(void)
+int Student::getIndexNo() const
 {
   return indexNumber_;
 }

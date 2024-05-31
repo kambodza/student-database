@@ -3,17 +3,14 @@
 #include <string>
 #include "gender.hpp"
 
-using namespace std;
-
-
 class Student 
 {
     private:
-    string name_; 
-    string lastName_;
-    string address_;
-    int indexNumber_;
-    string pesel_;
+    std::string name_; 
+    std::string lastName_;
+    std::string address_;
+    int indexNumber_ = {};
+    std::string pesel_;
     Gender gender_;
 
 
@@ -21,25 +18,25 @@ class Student
     public:
     /* c-tors */
     Student();
-    Student( string name, 
-             string lastName,
-             string address,
+    Student( const std::string &name, 
+             const std::string &lastName,
+             const std::string &address,
              int indexNumber,
-             string pesel,
+             const std::string &pesel,
              Gender gender);
 
-    void showStudent(void);
-    void showStudent(const Student & stud);
-    string showGender();
-    string showGender(const Student & stud);
-    void getNameFromCin(void);
-    void getLastNameFromCin(void);
-    void getAddressFromCin(void);
-    void getIndexNumberFromCin(void);
-    void getPeselFromCin(void);
-    void getGenderFromCin(void);
-    string getLastName(void);
-    string getPesel(void);
-    int getIndexNo(void);
+    void showStudent() const;
+    void showStudent(const Student & stud) const;
+    std::string showGender() const;
+    std::string showGender(const Student & stud) const;
+    void getNameFromCin();
+    void getLastNameFromCin();
+    void getAddressFromCin();
+    void getIndexNumberFromCin();
+    void getPeselFromCin();
+    void getGenderFromCin();
+    std::string getLastName() const;
+    std::string getPesel() const;
+    int getIndexNo() const;
 
 };
