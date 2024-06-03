@@ -37,7 +37,7 @@ void Database::commandsHandler()
 
         case 2:
             /* remove student */
-            removeByIndexNo(searchByIndexNo());
+            removeByPositionNo(searchByIndexNo());
             break;
 
         case 3:
@@ -52,15 +52,13 @@ void Database::commandsHandler()
         case 5:
             searchByPesel();
             break;
+
         case 6:
-            sortByPesel();
+            sortByLastname();
             break;
 
         case 7:
-            sortByLastname();
-            break;
-        case 8:
-
+            sortByPesel();
             break;
 
         case 10:
@@ -86,8 +84,8 @@ void Database::printMenuItems()
     std::cout << "3 - Show all Students" << "\n";
     std::cout << "4 - Search Student by lastname" << "\n";
     std::cout << "5 - Search Student by PESEL" << "\n";
-    std::cout << "6 - Sort Students by PESEL" << "\n";
-    std::cout << "7 - Sort Students by lastname" << "\n";
+    std::cout << "6 - Sort Students by lastname" << "\n";
+    std::cout << "7 - Sort Students by PESEL" << "\n";
     std::cout << "10 - Close program" << "\n";
 }
 
@@ -241,12 +239,18 @@ void Database::sortByLastname()
     }
 }
 
-void Database::removeByIndexNo(int idxNo)
+void Database::removeByPositionNo(int posNo)
 {
-    if(idxNo != -1)
+    if(posNo != -1)
     {
-        students_.erase(students_.begin() + idxNo);
-        std::cout << "Student is erased successfully!\n";
+        std::cout << "Distance" << std::distance(students_.begin(), students_.end()) << "\n";
+        if( posNo > std::distance(students_.begin(), students_.end()) )
+            std::cout << "Position is bigger than size of students vector!\n";
+        else
+        {
+            students_.erase(students_.begin() + posNo);
+            std::cout << "Student is erased successfully!\n";
+        }
     }
     else
         std::cout << "Unable to delete student!\n";

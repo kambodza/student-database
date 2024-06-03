@@ -41,12 +41,20 @@ void Student::showStudent() const
 
 std::string Student::showGender() const
 {
-  if(gender_ == Gender::Male)
-    return "Male";
-  if(gender_ == Gender::Female)
-    return "Female";
- 
-  return "Not_Specified";
+  switch( gender_ )
+  {
+    case Gender::Male:
+      return "Male";
+      break;
+
+    case Gender::Female:
+      return "Female";
+      break;
+
+    default:
+      return "Not_Specified";
+      break;
+  }  
 }
 
 void Student::takeNameFromCin()

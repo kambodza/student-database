@@ -19,5 +19,5 @@ public:
     int searchByIndexNo();
     void sortByPesel();
     void sortByLastname();
-    void removeByIndexNo(int idxNo);
+    void removeByPositionNo(int posNo);
 };
